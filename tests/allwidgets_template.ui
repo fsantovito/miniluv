@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="5" column="3">
+    <widget class="QCalendarWidget" name="calendar"/>
+   </item>
+   <item row="11" column="3">
+    <widget class="QProgressBar" name="progress">
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="11" column="1">
+    <widget class="QDateEdit" name="dateedit"/>
+   </item>
+   <item row="7" column="3">
+    <widget class="QDial" name="dial">
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" rowspan="3">
+    <widget class="QTextEdit" name="textedit"/>
+   </item>
+   <item row="8" column="0">
+    <widget class="QSpinBox" name="spinbox"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="combobox"/>
+   </item>
+   <item row="13" column="1" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QDateTimeEdit" name="datetimeedit"/>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="lineedit"/>
+   </item>
+   <item row="9" column="1">
+    <widget class="QTimeEdit" name="timeedit"/>
+   </item>
+   <item row="5" column="1" rowspan="3">
+    <widget class="QPlainTextEdit" name="plaintextedit"/>
+   </item>
+   <item row="9" column="0">
+    <widget class="QDoubleSpinBox" name="doublespinbox"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLCDNumber" name="lcd"/>
+   </item>
+   <item row="9" column="3">
+    <widget class="QSlider" name="slider">
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QCheckBox" name="checkbox">
+     <property name="text">
+      <string>CheckBox</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" rowspan="3">
+    <widget class="QGroupBox" name="groupbox">
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="radiobutton1">
+        <property name="text">
+         <string>RadioButton 1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="radiobutton2">
+        <property name="text">
+         <string>RadioButton 2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QRadioButton" name="radiobutton3">
+        <property name="text">
+         <string>RadioButton 3</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>radiobutton1</tabstop>
+  <tabstop>radiobutton2</tabstop>
+  <tabstop>radiobutton3</tabstop>
+  <tabstop>checkbox</tabstop>
+  <tabstop>combobox</tabstop>
+  <tabstop>lineedit</tabstop>
+  <tabstop>textedit</tabstop>
+  <tabstop>plaintextedit</tabstop>
+  <tabstop>spinbox</tabstop>
+  <tabstop>doublespinbox</tabstop>
+  <tabstop>datetimeedit</tabstop>
+  <tabstop>timeedit</tabstop>
+  <tabstop>dateedit</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>calendar</tabstop>
+  <tabstop>dial</tabstop>
+  <tabstop>slider</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
