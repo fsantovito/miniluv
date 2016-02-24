@@ -146,6 +146,9 @@ class TestViewModel(unittest.TestCase):
         view.ui.plaintextedit.setPlainText("bar")
         self.assertEqual(model.plaintextedit, view.ui.plaintextedit.toPlainText())
 
+    def test_fix_exception_on_field_not_observed(self):
+        model.missing_field = 'missing'
+        del model.missing_field
 
 if __name__ == '__main__':
     unittest.main()

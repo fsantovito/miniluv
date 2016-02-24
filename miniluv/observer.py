@@ -20,8 +20,9 @@ class Observable(type):
     def __new__(meta, name, bases, classdict):
 
         def notify(self, attribute, value):
-            for observer in self.__observers:
-                observer.notify(self, attribute, value)
+            if attribute in self.observed_fields:
+                for observer in self.__observers:
+                    observer.notify(self, attribute, value)
 
         def notify__setattr__(f):
             """ decoratore per __setattr__"""
