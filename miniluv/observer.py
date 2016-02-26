@@ -1,5 +1,36 @@
 import weakref
 
+def observable__setattr__(f):
+    """ decoratore per Observable.__setattr__"""
+
+    # https://bugs.python.org/issue3445
+    # from functools import wraps
+    # @wraps(f)
+    def wrapper(*args, **kwargs):
+        instance, attribute, value = args[:3]
+        result = f(*args, **kwargs)
+        instance.notify(attribute, value)
+        return result
+    return wrapper
+
+
+def observable__getattribute__(f):
+    """ decoratore per Observable.__getattribute__"""
+
+    # https://bugs.python.org/issue3445
+    # from functools import wraps
+    # @wraps(f)
+    def wrapper(*args, **kwargs):
+        instance, attribute = args[:2]        
+        result = f(*args, **kwargs)
+
+        if attribute == '_Observable__observers' and result is None:
+            result = weakref.WeakValueDictionary()
+            setattr(instance, '_Observable__observers', result)
+        return result
+
+    return wrapper
+
 
 class Observer(object):
     def observe(self, observable, enable=True):
@@ -24,26 +55,10 @@ class Observable(type):
                 for observer in self.__observers:
                     observer.notify(self, attribute, value)
 
-        def notify__setattr__(f):
-            """ decoratore per __setattr__"""
-
-            # https://bugs.python.org/issue3445
-            # from functools import wraps
-            # @wraps(f)
-            def wrapper(*args, **kwargs):
-                instance, attribute, value = args[:3]
-                result = f(*args, **kwargs)
-                instance.notify(attribute, value)
-                return result
-
-            return wrapper
-
-        classdict["notify"] = notify
-
-        instance = super(Observable, meta).__new__(meta, name, bases, classdict)
-        instance.__setattr__ = notify__setattr__(instance.__setattr__)
-        return instance
-
-    def __init__(cls, name, bases, dct):
-        super(Observable, cls).__init__(name, bases, dct)
-        cls.__observers = weakref.WeakValueDictionary()
+        classdict['notify'] = notify
+        classdict['_Observable__observers'] = None
+        
+        klass = super(Observable, meta).__new__(meta, name, bases, classdict)
+        klass.__setattr__ = observable__setattr__(klass.__setattr__)
+        klass.__getattribute__ = observable__getattribute__(klass.__getattribute__)
+        return klass

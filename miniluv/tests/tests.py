@@ -150,5 +150,11 @@ class TestViewModel(unittest.TestCase):
         model.missing_field = 'missing'
         del model.missing_field
 
+    def test_observed_should_not_share_observers(self):
+        
+        model2 = Model()
+        self.assertFalse(model._Observable__observers is model2._Observable__observers)
+
+
 if __name__ == '__main__':
     unittest.main()
